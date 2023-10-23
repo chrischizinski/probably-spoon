@@ -32,8 +32,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # preinstall packages
-RUN Rscript -e "install.packages(c('rmarkdown', 'knitr', 'roger', 'cli'), repos='http://cran.rstudio.com/', dependencies=TRUE)"
+RUN Rscript -e "install.packages(c('rmarkdown', 'knitr', 'roger', 'cli', 'tinytex'), repos='http://cran.rstudio.com/', dependencies=TRUE)"
+
+# install tinytex
+RUN Rscript -e "tinytex::install_tinytex()"
+
 
 # Installing Quarto
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
-RUN gdebi --non-interactive quarto-${QUARTO_VERSION}-linux-amd64.deb
+RUN gdebi --non-interactive quarto-linux-amd64.deb
