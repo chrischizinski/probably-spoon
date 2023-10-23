@@ -24,8 +24,12 @@ ENV CONFIGURE_OPTIONS="--with-cairo --with-jpeglib --enable-R-shlib --with-blas 
 ENV TZ=UTC
 ENV CRAN_MIRROR=$CRAN_MIRROR
 
-RUN apt-get update && \
-    apt-get install -y libssl-dev libcurl4-gnutls-dev libxml2-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    pandoc \
+    pandoc-citeproc \
+    curl \
+    gdebi-core \
+    && rm -rf /var/lib/apt/lists/*
 
 # preinstall packages
 RUN Rscript -e "install.packages(c('rmarkdown', 'knitr', 'roger', 'cli'), repos='http://cran.rstudio.com/', dependencies=TRUE)"
