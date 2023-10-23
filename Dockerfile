@@ -31,4 +31,5 @@ RUN apt-get update && \
 RUN Rscript -e "install.packages(c('rmarkdown', 'knitr', 'roger', 'cli'), repos='http://cran.rstudio.com/', dependencies=TRUE)"
 
 # Installing Quarto
-RUN bash ./install_quarto.sh $QUARTO_VER
+RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
+RUN gdebi --non-interactive quarto-linux-amd64.deb
