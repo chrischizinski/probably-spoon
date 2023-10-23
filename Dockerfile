@@ -28,7 +28,7 @@ RUN apt-get update && \
     apt-get install -y libssl-dev libcurl4-gnutls-dev libxml2-dev
 
 # preinstall packages
-RUN Rscript ./install_packages.R
+RUN Rscript -e "install.packages(c('rmarkdown', 'knitr', 'roger', 'cli'), repos='http://cran.rstudio.com/', dependencies=TRUE)"
 
 # Installing Quarto
 RUN bash ./install_quarto.sh $QUARTO_VER
