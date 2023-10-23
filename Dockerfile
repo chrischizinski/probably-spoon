@@ -11,7 +11,7 @@ ARG R_VERSION_MINOR=3
 ARG R_VERSION_PATCH=1
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CRAN_MIRROR=https://cran.rstudio.com/
-ARG QUARTO_VER="1.3.450"
+ARG QUARTO_VERSION="1.3.450"
 
 # Define environment variables
 ENV PROJECT_NAME=$PROJECT_NAME
@@ -36,4 +36,4 @@ RUN Rscript -e "install.packages(c('rmarkdown', 'knitr', 'roger', 'cli'), repos=
 
 # Installing Quarto
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
-RUN gdebi --non-interactive quarto-linux-amd64.deb
+RUN gdebi --non-interactive quarto-${QUARTO_VERSION}-linux-amd64.deb
