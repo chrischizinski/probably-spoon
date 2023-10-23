@@ -28,7 +28,7 @@ RUN apt-get update && \
     apt-get install -y libssl-dev libcurl4-gnutls-dev libxml2-dev
 
 # preinstall packages
-RUN Rscript install_packages.R
+RUN Rscript ./install_packages.R
 
 # Installing Quarto
-RUN bash ./settings/install_quarto.sh $QUARTO_VER
+RUN bash ./install_quarto.sh $QUARTO_VER
