@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:latest
+FROM rocker/tidyverse 
 
 LABEL maintainer="Chris Chizinski <chris.chizinski@gmail.com>"
 
