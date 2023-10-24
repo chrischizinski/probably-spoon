@@ -9,7 +9,7 @@ jobs:
     steps:
       -uses: actions/checkout@v3
       -name: Build and push image
-       run: |
+      run: |
         docker login --username chrischizinski --pasword ${{secrets.GHCRIO_TOKE}} ghcr.io
         docker build . -t ghcr.io/chrischizinski/tidyr:latest
         docker push ghcr.io/chrischizinski/tidyr:latest
