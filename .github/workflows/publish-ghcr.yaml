@@ -4,12 +4,11 @@ on:
   push
 
 jobs:
-  build_and_publish:
+  build:
     runs-on: ubuntu-latest
     steps:
-      -uses: actions/checkout@v3
-      -name: Build and push image
-      run: |
-        docker login --username chrischizinski --pasword ${{secrets.GHCRIO_TOKE}} ghcr.io
-        docker build . -t ghcr.io/chrischizinski/tidyr:latest
-        docker push ghcr.io/chrischizinski/tidyr:latest
+      - uses: actions/checkout@v2
+      - name: Build Docker Image
+        run: docker build . -t ghcr.io/chrischizinski/tidyr:latest
+      - name: Push Docker Image
+        run: docker push ghcr.io/chrischizinski/tidyr:latest
